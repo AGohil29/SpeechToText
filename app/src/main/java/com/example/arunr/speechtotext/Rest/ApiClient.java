@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
 
-    public static final String BASE_URL = "https://bot.hungama.com/hungama/mic/get_response.php";
+    public static final String BASE_URL = "https://bot.hungama.com/hungama/";
     private static Retrofit retrofit = null;
 
     public static Retrofit getClient() {

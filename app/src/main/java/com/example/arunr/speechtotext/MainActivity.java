@@ -72,9 +72,9 @@ public class MainActivity extends AppCompatActivity {
 
                     ArrayList<String> result = data
                             .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-                    txtSpeechInput.setText(result.get(0));
                     Intent startSongsActivity = new Intent(MainActivity.this, SongsActivity.class);
                     startSongsActivity.putExtra(SEARCH_INPUT, result.get(0));
+                    startActivity(startSongsActivity);
                 }
                 break;
             }

@@ -8,6 +8,6 @@ import retrofit2.http.Query;
 
 public interface ApiInterface {
 
-    @GET("")
-    Call<SongsResponse> getSearchedSongs(@Query("search") String searhInput);
+    @GET("mic/get_response.php")
+    Call<SongsResponse> getSearchedSongs(@Query("search") String searchInput);
 }
