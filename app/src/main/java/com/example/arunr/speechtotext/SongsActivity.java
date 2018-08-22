@@ -35,6 +35,9 @@ public class SongsActivity extends AppCompatActivity {
 
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setHasFixedSize(true);
+        // see if images load faster?
+        recyclerView.setItemViewCacheSize(20);
 
         Intent intentThatStartedThisActivity = getIntent();
 
@@ -49,9 +52,14 @@ public class SongsActivity extends AppCompatActivity {
         call.enqueue(new Callback<SongsResponse>() {
             @Override
             public void onResponse(Call<SongsResponse> call, Response<SongsResponse> response) {
-                int statusCode = response.code();
-                List<Song> songs = response.body().getRESPONSE();
-                recyclerView.setAdapter(new SongsAdapter(songs, R.layout.list_item_songs, getApplicationContext()));
+                try {
+                    int statusCode = response.code();
+                    List<Song> songs = response.body().getRESPONSE();
+                    recyclerView.setAdapter(new SongsAdapter(songs, R.layout.list_item_songs, getApplicationContext()));
+                } catch (IllegalStateException e) {
+                    e.printStackTrace();
+                }
+
             }
 
             @Override

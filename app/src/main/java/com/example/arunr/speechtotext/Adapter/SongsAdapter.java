@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.arunr.speechtotext.Model.Song;
 import com.example.arunr.speechtotext.R;
 
@@ -53,12 +54,19 @@ public class SongsAdapter extends RecyclerView.Adapter<SongsAdapter.SongViewHold
 
     @Override
     public void onBindViewHolder(@NonNull SongViewHolder holder, int position) {
-        holder.songTitle.setText(songs.get(position).getName());
-        // url for image
-        String url = songs.get(position).getImage().getImage100x100().get(0);
-        Glide.with(context)
-                .load(url)
-                .into(holder.movieImage);
+        try {
+                holder.songTitle.setText(songs.get(position).getName());
+                // url for image
+                String url = songs.get(position).getImage().getImage100x100().get(0);
+                Glide.with(context)
+                        .load(url)
+                        .apply(new RequestOptions()
+                            .placeholder(R.drawable.ic_launcher))
+                        .into(holder.movieImage);
+            } catch(IllegalStateException e){
+                e.printStackTrace();
+        }
+
     }
 
     @Override
