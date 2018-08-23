@@ -13,6 +13,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.example.arunr.speechtotext.adapter.SongsAdapter;
 import com.example.arunr.speechtotext.model.Song;
@@ -31,6 +32,8 @@ public class SongsActivity extends AppCompatActivity {
     private static final String TAG = SongsActivity.class.getSimpleName();
     private static final String SEARCH_INPUT = "search_input";
 
+    //error message
+    private TextView errorMessage;
     private ProgressBar progressBarLoadingIndicator;
     private String searchInput;
     private RecyclerView recyclerView;
@@ -44,6 +47,8 @@ public class SongsActivity extends AppCompatActivity {
 
         // show the progress bar visible initially
         progressBarLoadingIndicator.setVisibility(View.VISIBLE);
+
+        errorMessage = findViewById(R.id.error_message);
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -83,6 +88,9 @@ public class SongsActivity extends AppCompatActivity {
                 Log.e(TAG, t.toString());
                 // hide the progress bar after the response
                 progressBarLoadingIndicator.setVisibility(View.GONE);
+
+                // show the error message
+                errorMessage.setVisibility(View.VISIBLE);
             }
         });
     }

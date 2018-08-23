@@ -16,4 +16,14 @@
         android:layout_centerInParent="true"
         android:visibility="invisible"/>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/error_message"
+        android:text="@string/error_message"
+        android:layout_centerInParent="true"
+        android:textAlignment="center"
+        android:textSize="14sp"
+        android:visibility="invisible"/>
+
 </RelativeLayout>
