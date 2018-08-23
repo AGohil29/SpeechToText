@@ -2,11 +2,17 @@ package com.example.arunr.speechtotext;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.AsyncTaskLoader;
+import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.example.arunr.speechtotext.adapter.SongsAdapter;
 import com.example.arunr.speechtotext.model.Song;
@@ -24,14 +30,22 @@ public class SongsActivity extends AppCompatActivity {
 
     private static final String TAG = SongsActivity.class.getSimpleName();
     private static final String SEARCH_INPUT = "search_input";
+
+    private ProgressBar progressBarLoadingIndicator;
     private String searchInput;
+    private RecyclerView recyclerView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_songs);
 
-        final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        progressBarLoadingIndicator = findViewById(R.id.progress_loading_indicator);
+
+        // show the progress bar visible initially
+        progressBarLoadingIndicator.setVisibility(View.VISIBLE);
+
+        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
         // see if images load faster?
@@ -53,8 +67,10 @@ public class SongsActivity extends AppCompatActivity {
             public void onResponse(Call<SongsResponse> call, Response<SongsResponse> response) {
                 try {
                     int statusCode = response.code();
-                    List<Song> songs = response.body().getResponse();
-                    recyclerView.setAdapter(new SongsAdapter(songs, R.layout.list_item_songs, getApplicationContext()));
+                    List<Song> songsList = response.body().getResponse();
+                    recyclerView.setAdapter(new SongsAdapter(songsList, R.layout.list_item_songs, getApplicationContext()));
+                    // hide the progress bar after the response
+                    progressBarLoadingIndicator.setVisibility(View.GONE);
                 } catch (IllegalStateException e) {
                     e.printStackTrace();
                 }
@@ -65,6 +81,8 @@ public class SongsActivity extends AppCompatActivity {
             public void onFailure(Call<SongsResponse> call, Throwable t) {
                 // log error here since request failed
                 Log.e(TAG, t.toString());
+                // hide the progress bar after the response
+                progressBarLoadingIndicator.setVisibility(View.GONE);
             }
         });
     }

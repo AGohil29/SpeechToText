@@ -68,7 +68,6 @@ public class SongsAdapter extends RecyclerView.Adapter<SongsAdapter.SongViewHold
             } catch(IllegalStateException e){
                 e.printStackTrace();
         }
-
     }
 
     @Override
