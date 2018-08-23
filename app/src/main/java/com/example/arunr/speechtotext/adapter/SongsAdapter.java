@@ -19,30 +19,30 @@ import java.util.List;
 
 public class SongsAdapter extends RecyclerView.Adapter<SongsAdapter.SongViewHolder> {
 
-    private List<Song> songs;
+    private List<Song> songsList;
     private int rowLayout;
     private Context context;
 
 
     public static class SongViewHolder extends RecyclerView.ViewHolder {
 
-        // todo - use itemView of viewholder to reference the views directly
+        // Completed - use itemView of viewholder to reference the views directly
 
-        CardView songsLayout;
+        CardView songsListLayout;
         ImageView movieImage;
         TextView songTitle;
 
         public SongViewHolder(View view) {
             super(view);
 
-            songsLayout = (CardView) view.findViewById(R.id.card_view);
-            movieImage = (ImageView) view.findViewById(R.id.movie_image);
-            songTitle = (TextView) view.findViewById(R.id.song_title);
+            songsListLayout = itemView.findViewById(R.id.card_view);
+            movieImage = itemView.findViewById(R.id.movie_image);
+            songTitle = itemView.findViewById(R.id.song_title);
         }
     }
 
-    public SongsAdapter(List<Song> songs, int rowLayout, Context context) {
-        this.songs = songs;
+    public SongsAdapter(List<Song> songsList, int rowLayout, Context context) {
+        this.songsList = songsList;
         this.rowLayout = rowLayout;
         this.context = context;
     }
@@ -57,9 +57,9 @@ public class SongsAdapter extends RecyclerView.Adapter<SongsAdapter.SongViewHold
     @Override
     public void onBindViewHolder(@NonNull SongViewHolder holder, int position) {
         try {
-                holder.songTitle.setText(songs.get(position).getName());
+                holder.songTitle.setText(songsList.get(position).getName());
                 // url for image
-                String url = songs.get(position).getImage().getImage100x100().get(0);
+                String url = songsList.get(position).getImage().getImage100x100().get(0);
                 Glide.with(context)
                         .load(url)
                         .apply(new RequestOptions()
@@ -73,6 +73,6 @@ public class SongsAdapter extends RecyclerView.Adapter<SongsAdapter.SongViewHold
 
     @Override
     public int getItemCount() {
-        return songs.size();
+        return songsList.size();
     }
 }

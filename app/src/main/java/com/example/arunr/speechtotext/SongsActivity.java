@@ -53,7 +53,7 @@ public class SongsActivity extends AppCompatActivity {
             public void onResponse(Call<SongsResponse> call, Response<SongsResponse> response) {
                 try {
                     int statusCode = response.code();
-                    List<Song> songs = response.body().getRESPONSE();
+                    List<Song> songs = response.body().getResponse();
                     recyclerView.setAdapter(new SongsAdapter(songs, R.layout.list_item_songs, getApplicationContext()));
                 } catch (IllegalStateException e) {
                     e.printStackTrace();

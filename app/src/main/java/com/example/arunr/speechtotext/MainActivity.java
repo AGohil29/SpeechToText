@@ -27,8 +27,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Completed - rename the variable names in the model class
-
         btnSpeak = (ImageButton) findViewById(R.id.btnSpeak);
 
         //hide the action bar
