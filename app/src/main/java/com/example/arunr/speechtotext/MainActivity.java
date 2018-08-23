@@ -4,6 +4,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.speech.RecognizerIntent;
 import android.support.annotation.Nullable;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -18,7 +19,6 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity {
 
     private static final String SEARCH_INPUT = "search_input";
-    private TextView txtSpeechInput;
     private ImageButton btnSpeak;
     private final int REQ_CODE_SPEECH_INPUT = 200;
 
@@ -27,11 +27,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        txtSpeechInput = (TextView) findViewById(R.id.txtSpeechInput);
+        // Completed - rename the variable names in the model class
+
         btnSpeak = (ImageButton) findViewById(R.id.btnSpeak);
 
         //hide the action bar
-        //getActionBar().hide();
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
 
         btnSpeak.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -7,14 +7,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.widget.TextView;
 
-import com.example.arunr.speechtotext.Adapter.SongsAdapter;
-import com.example.arunr.speechtotext.Model.Song;
-import com.example.arunr.speechtotext.Model.SongsResponse;
-import com.example.arunr.speechtotext.R;
-import com.example.arunr.speechtotext.Rest.ApiClient;
-import com.example.arunr.speechtotext.Rest.ApiInterface;
+import com.example.arunr.speechtotext.adapter.SongsAdapter;
+import com.example.arunr.speechtotext.model.Song;
+import com.example.arunr.speechtotext.model.SongsResponse;
+import com.example.arunr.speechtotext.rest.ApiClient;
+import com.example.arunr.speechtotext.rest.ApiInterface;
 
 import java.util.List;
 
@@ -46,6 +44,7 @@ public class SongsActivity extends AppCompatActivity {
             searchInput = intentThatStartedThisActivity.getStringExtra(SEARCH_INPUT);
         }
 
+        // Todo - show loading indicator while the data is loaded
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
 
         Call<SongsResponse> call = apiService.getSearchedSongs(searchInput);

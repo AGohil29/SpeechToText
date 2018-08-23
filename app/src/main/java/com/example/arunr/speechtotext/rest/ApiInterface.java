@@ -1,6 +1,6 @@
-package com.example.arunr.speechtotext.Rest;
+package com.example.arunr.speechtotext.rest;
 
-import com.example.arunr.speechtotext.Model.SongsResponse;
+import com.example.arunr.speechtotext.model.SongsResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

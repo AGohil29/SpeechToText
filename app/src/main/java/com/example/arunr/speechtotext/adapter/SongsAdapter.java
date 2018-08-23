@@ -1,4 +1,4 @@
-package com.example.arunr.speechtotext.Adapter;
+package com.example.arunr.speechtotext.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.example.arunr.speechtotext.Model.Song;
+import com.example.arunr.speechtotext.model.Song;
 import com.example.arunr.speechtotext.R;
 
 import java.util.List;
@@ -25,6 +25,8 @@ public class SongsAdapter extends RecyclerView.Adapter<SongsAdapter.SongViewHold
 
 
     public static class SongViewHolder extends RecyclerView.ViewHolder {
+
+        // todo - use itemView of viewholder to reference the views directly
 
         CardView songsLayout;
         ImageView movieImage;

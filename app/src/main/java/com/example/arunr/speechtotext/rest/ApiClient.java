@@ -1,4 +1,4 @@
-package com.example.arunr.speechtotext.Rest;
+package com.example.arunr.speechtotext.rest;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
